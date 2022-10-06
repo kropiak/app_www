@@ -11,7 +11,7 @@
 1.2 Jeżeli Twoja wiedza na temat działania protokołu HTTP wymaga odświeżenia to polecam dobry artykuł na ten temat: https://www.samouczekprogramisty.pl/protokol-http/
 
 1.3 Zachęcam również do zaglądnięcia do kilku ciekawych tutoriali (poza oficjalnym oczywiście) wprowadzających do tworzenia aplikacji z użyciem Django:
-* https://realpython.com/get-started-with-django-1/( i więcej kursów z tej strony w tematyce Django: https://realpython.com/tutorials/django/)
+* https://realpython.com/get-started-with-django-1/ (i więcej kursów z tej strony w tematyce Django: https://realpython.com/tutorials/django/ )
 * https://www.w3schools.com/django/
 * https://tutorial.djangogirls.org/pl/
 
