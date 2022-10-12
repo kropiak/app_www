@@ -59,3 +59,8 @@ Iżynieria wsteczna (ang. reverse engineering). Schemat bazy danych możemy przy
 7. Posługując się przykładem z [oficjalnego tutoriala numer 2](https://docs.djangoproject.com/pl/4.1/intro/tutorial02/) dodaj jeden model do panelu administracyjnego i przetestuj dodanie, modyfikację i usunięcie instancji tego modelu. Sprawdzaj zawartość w panelu django debug toolbar za każdym razem.
 8. Ponownie w tutorialu https://docs.djangoproject.com/pl/4.1/intro/tutorial02/ przeanalizuj przykłady z wykorzystaniem django shell i wykonaj analogiczny przykład (import modułów, modelu, utworzenie instancji, itd.) wykorzystując jeden z utworzonych modeli.
 9. Zapisz zmiany w repozytorium i jeżeli jest to wymagane wyślij informacje o dodaktowym repozytorium dla prowadzącego zajęcia.
+
+
+### Dodatkowe narzędzia i materiały
+
+* Do obsługi wielu źródeł danych może przydać się darmowe narzędzie o nazwie DBeaver, które posiada również możliwość tworzenia schematów bazy danych a następnie generowania poleceń SQL z takiego schematu. Więcej: https://dbeaver.com/2022/07/07/forward-engineering-with-erd/
