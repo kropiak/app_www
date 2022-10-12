@@ -37,3 +37,4 @@ W trakcie zajęć do pracy niezbędne będzie posiadanie:
    - Poziom skomplikowania projektu (np. ilość modeli, działanie endpointów, itp.)
 - Proponowany temat API (co te API będzie robić) jest dowolny i będzie przedstawiony prowadzącemu na drugich zajęciach.
 - Prowadzący rezerwuje możliwość przeprowadzenia kolokwium w przypadku braku pracy na zajęciach przez grupę studentów.
+
