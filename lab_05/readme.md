@@ -93,7 +93,7 @@ Chcąc stworzyć endpoint REST możemy wykorzystać dwa opakowania (ang. wrapper
 * dekorator `@api_view` dla widoków opratych na funkcjach,
 * klasę `APIView` dla widoków opartych na klasach.
 
-Poniżej przykład implementacji endpointu opartego na widokach funkcyjnych.
+Poniżej przykład implementacji endpointu opartego na widokach funkcyjnych (plik `views.py`)
 
 **_Listing 5_**
 ```python
