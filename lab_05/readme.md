@@ -104,18 +104,17 @@ from rest_framework.response import Response
 from .models import Person, Team
 from .serializers import PersonSerializer
 
-# lista akceptowanych metod protokołu HTTP, to pozwala na zgłaszanie wyjątków
-# w przypadku próby dostępu metodą spoza listy
-@api_view(['GET'])  
+
+@api_view(['GET'])
 def person_list(request):
     """
-    Lista wszystkich obiektów klasy Person.
+    Lista wszystkich obiektów modelu Person.
     """
     if request.method == 'GET':
         persons = Person.objects.all()
-        # dane podawane są poprzez uprzednio przygotowany serializer
         serializer = PersonSerializer(persons, many=True)
         return Response(serializer.data)
+
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def person_detail(request, pk):
@@ -123,7 +122,7 @@ def person_detail(request, pk):
     """
     :param request: obiekt DRF Request
     :param pk: id obiektu Person
-    :return: Response (może zawierać dane i/lub status HTTP żądania)
+    :return: Response (with status and/or object/s data)
     """
     try:
         person = Person.objects.get(pk=pk)
@@ -138,9 +137,6 @@ def person_detail(request, pk):
         serializer = PersonSerializer(person)
         return Response(serializer.data)
 
-    """
-    Aktualizacja obiekt typu Person.
-    """
     elif request.method == 'PUT':
         serializer = PersonSerializer(person, data=request.data)
         if serializer.is_valid():
@@ -148,12 +144,10 @@ def person_detail(request, pk):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    """
-    Usuwanie obiektu typu Person.
-    """
     elif request.method == 'DELETE':
         person.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 ```
 
 Aby całość zadziałała jak należy, niezbędne jest dodanie również odpowienich wpisów w plikach `urls.py` odpowiednich aplikacji projektu.
