@@ -167,6 +167,20 @@ urlpatterns = [
 ]
 ```
 
+I przykładowy plik `projekt/urls.py` z importem url'i danej aplikacji.
+**_Listing 7_**
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('admin-tools/', include('admin_tools.urls'),),
+    path('ankiety/', include('ankiety.urls'),)
+]
+```
+
 Umieszczając definicje dla każdej aplikacji wewnątrz jej struktury, uniezależniamy ją jeszcze bardziej od głównego projektu i możemy łatwiej przenosić pomiędzy projektami. Wymagane jest jeszcze dołączenie tych urli w pliku `urls.py` głównego projektu.
 
 Po poprawnej konfiguracji widok standardowy w oknie przeglądarki może wyglądać tak:
