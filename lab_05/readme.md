@@ -168,6 +168,7 @@ urlpatterns = [
 ```
 
 I przykładowy plik `projekt/urls.py` z importem url'i danej aplikacji.
+
 **_Listing 7_**
 ```python
 from django.contrib import admin
