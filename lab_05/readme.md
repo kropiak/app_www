@@ -212,4 +212,4 @@ Po poprawnej konfiguracji widok standardowy w oknie przeglądarki może wygląda
    * zatwierdź zmiany w poprzednim branchu
    * dodaj nowy branch o nazwie `feature_lab_5_class_views` i przełącz się na niego
    * zamień implementację API dla modelu `Osoba` zgodnie z przykładem z dokumentacji, rozszerzając klasę `APIView` DRF.
-   * zatwierdź zmiany na branchu, ale nie zsalaj z główną gałęzią.
+   * zatwierdź zmiany na branchu, ale nie scalaj z główną gałęzią.
