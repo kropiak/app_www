@@ -1,6 +1,6 @@
 # Aplikacje WWW, semestr 2022Z
 
-## Lab 6 - Autoryzacja i autentykacja w Django i DRF.
+## Lab 6 - Autentykacja w Django i DRF.
 ---
 
 ### **1. Autentykacja (uwierzytelnianie).**
@@ -193,6 +193,32 @@ Po odświeżeniu widoku API w prawym rogu pojawi się możliwość zalogowania z
 
 **Autentykacja poprzez token**
 
+Wdrożenie prostej autentykacji poprzez token jest jednym z zadań do samodzielnego wykonania. Poniżej umieszczam kilka wskazówek, które pomogą w tym procesie i pozwolą uniknąć kilku błędów w trakcie implementacji.
+
+
+Autentykacja poprzez token wymaga dodania odpowiedniego atrybutu w nagłówku żądania. W zależności od klienta, za którego korzystamy sam sposób przekazania może się różnić. 
+
+W przypadku narzędzia `http` wiersza poleceń (Mac) może to wyglądać tak:
+```bash
+http http://127.0.0.1:8000/hello/ 'Authorization: Token 9054f7aa9305e012b3c2300408c3dfdf390fcddf'
+```
+
+W przypadku polecenia `curl`:
+```bash
+curl http://127.0.0.1:8000/hello/ -H 'Authorization: Token 9054f7aa9305e012b3c2300408c3dfdf390fcddf'
+```
+ Z poziomu czystego Pythona:
+ ```python
+ import requests
+
+url = 'http://127.0.0.1:8000/hello/'
+headers = {'Authorization': 'Token 9054f7aa9305e012b3c2300408c3dfdf390fcddf'}
+r = requests.get(url, headers=headers)
+```
+
+A w programie Postman należy przejść do zakładki `Authorization`, wybrać `Bearer Token` i podać jego wartość jak na poniższym zrzucie ekranu.
+
+![](postman_auth.png)
 
 
 
