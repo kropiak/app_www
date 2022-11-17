@@ -220,12 +220,12 @@ A w programie Postman należy przejść do zakładki `Authorization`, wybrać `B
 
 ![](postman_auth.png)
 
-
+Dodatkowo, dal widoków (endpointów), które będą uwierzytelniane poprzez token nie możemy używać jednocześnie kontroli uprawnienia `IsAuthenticated`.
 
 **Zadania**
 
 1. W aplikacji rozwijanej w trakcie zajęć odtwórz opisany powyżej sposób uwierzytelniania i go przetestuj.
-2. Do klasy `Osoba` dodaj pole `wlasciciel`, które będzie odwoływało się do modelu `User` wbudowanego w Django Auth. Ogranicz możliwość wyświetlania rekordów tylko ich właścicielom. Przetestuj z użyciem dwóch różnych kont uzytkowników. W tutorialu (https://www.django-rest-framework.org/tutorial/4-authentication-and-permissions/#tutorial-4-authentication-permissions) przedstawiony jest taki scenariusz z przykładami. Nie wystawiaj jednak API dla modelu `User` jeżeli nie jest to konieczne.
+2. Do klasy `Osoba` dodaj pole `wlasciciel`, które będzie odwoływało się do modelu `User` wbudowanego w Django Auth. Ogranicz możliwość wyświetlania rekordów tylko ich właścicielom. Przetestuj z użyciem dwóch różnych kont użytkowników. W tutorialu (https://www.django-rest-framework.org/tutorial/4-authentication-and-permissions/#tutorial-4-authentication-permissions) przedstawiony jest taki scenariusz z przykładami. Nie wystawiaj jednak API dla modelu `User` jeżeli nie jest to konieczne.
 3. Korzystając z dokumentacji zawartej w https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication dodaj obsługe tokenów w aplikacji. Dodaj również tokeny dla istniejących userów.
 4. Rozbij endpoint dla person na oddzielne punkty dla żądania typu PUT oraz DELETE i dla tego drugiego ustaw autentykację poprzez token. Przetestuj działanie.
 5. Dodaj lub zmodyfikuj istniejący endpoint tak aby możliwe było wyświetlenie wszystkich obiektów typu Osoba przypisanych do danego id drużyny. Niech url dla niego będzie postaci `.\druzyna\<id>\czlonkowie\`. Niech dostęp będzie tylko do odczytu i tylko poprzez autoryzację tokenem.
