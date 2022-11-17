@@ -1,6 +1,6 @@
 # Aplikacje WWW, semestr 2022Z
 
-## Lab 7 - Uprawnienia w aplikacji Django oraz dla Django Rest Framework.
+## Lab 7 - Uprawnienia w aplikacji Django oraz w Django Rest Framework.
 
 > **Materiały uzupełniające:**
 > * Ciekawy rtykuł o uprawnieniach dla Django: https://realpython.com/manage-users-in-django-admin/ (UWAGA: linki odnoszą do dokumentacji dla wersi 2.x Django)
@@ -99,9 +99,46 @@ Pozostałe zostały opisane tutaj: https://www.django-rest-framework.org/api-gui
 
 Dokumentacja: https://www.django-rest-framework.org/api-guide/permissions/#djangomodelpermissions
 
-Z racji tego, że aktualnie nie ma oficjalnego rozwiązania pozwalającego na wykorzystanie `DjangoModelPermissions` w przypadku wykorzystania widoków funkcyjnych (to te, gdzie używamy dekoratora `@api_view`) należy niezbędną logikę widoków dla DRF przepisać na class based views. Przykład dla modelu team poniżej.
+Z racji tego, że aktualnie nie ma oficjalnego rozwiązania pozwalającego na wykorzystanie `DjangoModelPermissions` w przypadku wykorzystania widoków funkcyjnych (to te, gdzie używamy dekoratora `@api_view`) należy niezbędną logikę widoków dla DRF przepisać na class based views. 
 
+> **UPDATE:** Można jednak obejść problem wykorzystania `DjangoModelPermissions` w widokach funkcyjnych ustawiając ten mechanizm jako główny w pliku `settings.py`, a następnie w widokach przesłaniając go innymi wartościami dekoratora `@permission_classes`
+
+Wpis w `settings.py`:
+```python
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'ankiety.permissions.CustomDjangoModelPermissions',
+    )
+}
+```
 **_Listing 4_**
+```python
+# i teraz widok funkcyjny może wyglądać tak
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([BearerTokenAuthentication])
+def person_detail(request, pk):
+
+    """
+    :param request: obiekt DRF Request
+    :param pk: id obiektu Person
+    :return: Response (with status and/or object/s data)
+    """
+
+    if request.method == 'GET':
+        try:
+            person = Person.objects.get(pk=pk)
+        except Person.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = PersonSerializer(person)
+        return Response(serializer.data)
+
+```
+
+Przykład dla modelu team poniżej.
+
+**_Listing 5**
 
 ```python
 class TeamDetail(APIView):
@@ -146,7 +183,8 @@ W dokumentacji znajdziemy informacje o mapowaniu żądań na uprawnienia:
 
 A gdzie żądanie `GET`? Otóż chociaż mogłoby się wydawać logicznym, że powinno być mapowanie na uprawnienie `view` dla modelu, to tak nie jest. Można jednak rozszerzyć bazową klasę `DjangoModelPermissions` i dodać tę funkcjonalność.
 
-**_Listing 5_**
+**_Listing 6_**
+
 Kod został umieszczony w pliku `permissions.py` w folderze aplikacji (nie projektu).
 ```python
 import copy
