@@ -32,7 +32,7 @@ Aby całość funkcjonowała poprawnie w ekosystemie projektu nazwy uprawnień n
 
 Samo istnienie uprawnień nie powoduje, że w każdym miejscu aplikacji działa mechanizm ich weryfikacji, jeżeli na danym modelu odbywa się jedna z operacji CRUD. Jedynym miejscem, w którym się to odbywa jest panel administracyjny.
 
-W każdym innym miejscu musimy zaimplementować metody sprawdzające posiadanie przez uzytkownika wykonującego daną akcję posiadanie przez niego stosownych uprawnień.
+W każdym innym miejscu musimy zaimplementować metody sprawdzające posiadanie przez użytkownika wykonującego daną akcję posiadanie przez niego stosownych uprawnień.
 
 **_Listing 1_**  
 ```python
@@ -91,7 +91,7 @@ Możliwe jest również weryfikowanie uprawnień na poziomie szablonów widoków
 
 ## 3.Uprawnienia a Django Rest Framework
 
-Django Rest Framework dostarcza kilka wbudowanych uprawnień, z których część została przedstawiona na poprzednich zajęciach (np. IsAuthenticated).
+Django Rest Framework dostarcza kilka wbudowanych uprawnień, z których część została przedstawiona na poprzednich zajęciach (np. `IsAuthenticated`).
 
 Pozostałe zostały opisane tutaj: https://www.django-rest-framework.org/api-guide/permissions/#api-reference
 
@@ -144,7 +144,7 @@ W dokumentacji znajdziemy informacje o mapowaniu żądań na uprawnienia:
 A gdzie żądanie `GET`? Otóż chociaż mogłoby się wydawać logicznym, że powinno być mapowanie na uprawnienie `view` dla modelu, to tak nie jest. Można jednak rozszerzyć bazową klasę `DjangoModelPermissions` i dodać tę funkcjonalność.
 
 **_Listing 5_**
-Kod został umieszczony w pliku `permissions.py` w głównym folderze projektu.
+Kod został umieszczony w pliku `permissions.py` w folderze aplikacji (nie projektu).
 ```python
 import copy
 
@@ -166,7 +166,7 @@ class CustomDjangoModelPermission(permissions.DjangoModelPermissions):
 Dodaj nową grupę w panelu administracyjnym. Dodaj do tej grupy jedno wybrane uprawnienie domyślne dla modelu, który został dodany do zarządzania w panelu administracyjnym. Stwórz nowego użytkownika, który będzie "w zespole", ale nie będzie superużytkownikiem i przypisz go do tej grupy. Zaloguj się na konto stworzonego użytkownika i sprawdź czy kontrola tego uprawnienia działa poprawnie.
 
 **Zadanie 2**  
-Korzystając z przykładów z listingów 1 oraz 2 dodaj prosty widok, w logice którego sprawdź czy user posiada uprawnienie `osoba_view` i wyświetlaj odpowiednią treść.
+Korzystając z przykładów z listingów 1 oraz 2 dodaj prosty widok, w logice którego sprawdź czy user posiada uprawnienie `view_osoba` i wyświetlaj odpowiednią treść.
 
 **Zadanie 3**  
 Do modelu `Osoba` dodaj własne uprawnienie o nazwie `can_view_other_persons`, które dodaj do logiki z zadania 2 i jeżeli jest ono przypisane to pozwalaj wyświetlać obiekty modelu `Osoba`, których zalogowany użytkownik nie jest właścicielem. W przeciwnym wypadku nie daj takiej możliwości.
