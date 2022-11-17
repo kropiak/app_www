@@ -205,7 +205,7 @@ http http://127.0.0.1:8000/hello/ 'Authorization: Token 9054f7aa9305e012b3c23004
 
 W przypadku polecenia `curl`:
 ```bash
-curl http://127.0.0.1:8000/hello/ -H 'Authorization: Token 9054f7aa9305e012b3c2300408c3dfdf390fcddf'
+curl -H "Authorization: Token 9054f7aa9305e012b3c2300408c3dfdf390fcddf" http://127.0.0.1:8000/hello/ 
 ```
  Z poziomu czystego Pythona:
  ```python
@@ -220,7 +220,22 @@ A w programie Postman należy przejść do zakładki `Authorization`, wybrać `B
 
 ![](postman_auth.png)
 
-Dodatkowo, dal widoków (endpointów), które będą uwierzytelniane poprzez token nie możemy używać jednocześnie kontroli uprawnienia `IsAuthenticated`.
+Postman narzuca też własną nazwę tokena co powoduje, że nagłówek żądania wygląda tak:
+```python
+headers = {'Authorization': 'Bearer 9054f7aa9305e012b3c2300408c3dfdf390fcddf'}
+```
+
+Można to obejść poprzez prostą własną implementację klasy `TokenAuthentication`:
+
+**_Listing_ 3**
+```python
+class BearerTokenAuthentication(TokenAuthentication):
+    keyword = u"Bearer"
+```
+
+A następnie importujemy ją w widokach i zamieniamy nazwę `TokenAuthentication` na `BearerTokenAuthentication`. Jednak to będzie wymuszało podawanie teraz nagłówka jako `'Authorization': 'Bearer 9054f7aa9305e012b3c2300408c3dfdf390fcddf'` a nie `'Authorization': 'Token 9054f7aa9305e012b3c2300408c3dfdf390fcddf'`.
+
+Dodatkowo, dla widoków (endpointów), które będą uwierzytelniane poprzez token nie możemy używać jednocześnie kontroli uprawnienia `IsAuthenticated`.
 
 **Zadania**
 

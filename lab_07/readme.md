@@ -105,11 +105,14 @@ Z racji tego, że aktualnie nie ma oficjalnego rozwiązania pozwalającego na wy
 
 ```python
 class TeamDetail(APIView):
-    # ustalamy dostępne dla widoków metody uwierzytelniania
-    authentication_classes = [TokenAuthentication]
-    # określamy zbiór uprawnień - tutaj propagacja uprawnień na modelach, zdefiniowanych
-    # dla grupy lub użytkownika przypisanego do tokena
-    permission_classes = [DjangoModelPermissions]
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, CustomDjangoModelPermissions]
+
+    # dodanie tej metody lub pola klasy o nazwie queryset jest niezbędne
+    # aby DjangoModelPermissions działało poprawnie (stosowny błąd w oknie konsoli
+    # nam o tym przypomni)
+    def get_queryset(self):
+        return Team.objects.all()
 
     def get_object(self, pk):
         try:
@@ -159,7 +162,6 @@ class CustomDjangoModelPermission(permissions.DjangoModelPermissions):
 ```
 
 
-
 ## **Zadania**
 
 **Zadanie 1**  
@@ -172,5 +174,5 @@ Korzystając z przykładów z listingów 1 oraz 2 dodaj prosty widok, w logice k
 Do modelu `Osoba` dodaj własne uprawnienie o nazwie `can_view_other_persons`, które dodaj do logiki z zadania 2 i jeżeli jest ono przypisane to pozwalaj wyświetlać obiekty modelu `Osoba`, których zalogowany użytkownik nie jest właścicielem. W przeciwnym wypadku nie daj takiej możliwości.
 
 **Zadanie 4**  
-Przetestuj działanie klasy `DjangoModelPermissions` z DRF z różnymi prawami dostępu (GET, PUT, POST, DELETE).
+Przetestuj działanie klasy `DjangoModelPermissions` (lub `CustomDjangoModelPermissions`) z DRF z różnymi prawami dostępu (GET, PUT, POST, DELETE). Pamiętaj, że użytkownikowi, który nie jest superuserem należy przypisać stosowne prawa do modelu (poprzez przypisanie ich do grupy).
 
