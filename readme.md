@@ -1,4 +1,4 @@
-# Aplikacje WWW, semestr 2022Z
+# Aplikacje WWW, semestr 2023Z
 
 ## 1. Cel i zakres przedmiotu
 
@@ -18,7 +18,7 @@ W trakcie zajęć student pozna m.in. zagadnienia takie jak:
 ## 2. Oprogramowanie
 
 W trakcie zajęć do pracy niezbędne będzie posiadanie:
-* zainstalowanego interpretera **Pythona** w wersji 3.8 lub nowszej (preferowane 3.9 lub nowsza)
+* zainstalowanego interpretera **Pythona** w wersji 3.9 lub nowszej
 * **framework Django** w wersji 4.1.*
 * narzędzie IDE, preferowane **PyCharm Professional** (licencja studencka) lub wersja Community. Może to być również inne oprogramowanie ze wsparciem dla języka Python.
 * narzędzie Git do zarządzania kodem projektu
