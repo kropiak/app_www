@@ -53,6 +53,7 @@ Iżynieria wsteczna (ang. reverse engineering). Schemat bazy danych możemy przy
 
 > Dokumentacja: https://docs.djangoproject.com/pl/4.1/topics/db/models/
 
+Definicje modeli dodajemy w pliku `projekt/aplikacja/models.py`.
 
 __*Listing 1:*__
 ```python
@@ -86,7 +87,7 @@ class Person(models.Model):
         return self.name
 ```
 
-Wykonanie polecenia migracji powinno propagować powyzsze modele na schemat domyślnie zdefiniowanej w projekcie bazy danych.
+Wykonanie polecenia migracji powinno propagować powyższe modele na schemat domyślnie zdefiniowanej w projekcie bazy danych.
 
 **ZADANIA**
 
