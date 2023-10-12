@@ -34,7 +34,7 @@ python manage.py createsuperuser
 Ten użytkownik jest niezbędny, aby możliwe było zalogowanie się do panelu administracyjnego i wykonywanie w nim czynności administracyjnych.
 
 Zaloguj się do panelu administracyjnego i sprawdź dostępne w nim opcje na tym etapie tworzenia aplikacji.
-
+Adres panelu to http://adres.hosta/admin
 
 ### 2. Schemat bazy danych.
 
