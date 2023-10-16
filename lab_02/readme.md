@@ -34,7 +34,7 @@ python manage.py createsuperuser
 Ten użytkownik jest niezbędny, aby możliwe było zalogowanie się do panelu administracyjnego i wykonywanie w nim czynności administracyjnych.
 
 Zaloguj się do panelu administracyjnego i sprawdź dostępne w nim opcje na tym etapie tworzenia aplikacji.
-Adres panelu to http://adres.hosta/admin
+Adres panelu przy domyślnych ustawieniach to: http://127.0.0.1:8000/admin
 
 ### 2. Schemat bazy danych.
 
@@ -43,10 +43,15 @@ Każdy projekt potrzebuje jakiejś formy trwałego przechowywania choćby niewie
 Tworzenie schematu bazy na potrzeby projektu Django można przeprowadzić na dwa sposoby.
 
 **Sposób 1.**
-Tworzymy odpowiednie implementacje klasy `model` z API Django a następnie poprzez migrację tworzymy schemat w docelowej bazie. Patrz **listing 1**.
+Tworzymy odpowiednie implementacje klasy `django.db.models.Model` z API Django (patrz **listing 1**), a następnie poprzez migrację tworzymy schemat w docelowej bazie.
 
 **Sposób 2**
-Iżynieria wsteczna (ang. reverse engineering). Schemat bazy danych możemy przygotować bezpośrednio poprzez polecenia SQL lub narzędzia graficzne, a następnie poleceniem `inspectdb` wygenerować kod w języku Python zgodny z deklaracją, którą należy przygotować postępując sposobem pierwszym.
+Iżynieria wsteczna (ang. reverse engineering). Schemat bazy danych możemy przygotować bezpośrednio poprzez polecenia SQL lub narzędzia graficzne, a następnie poleceniem `manage.py inspectdb` wygenerować kod w języku Python zgodny z deklaracją, którą należy przygotować postępując sposobem pierwszym. Ten kod zostanie wyświetlony w konsoli i można strumień przekierować do pliku. Przykład poniżej.
+
+```console
+# dopisanie do pliku
+manage.py inspectdb >> models.py 
+```
 
 ### 3. Modele w Django.
 
@@ -58,7 +63,7 @@ Definicje modeli dodajemy w pliku `projekt/aplikacja/models.py`.
 __*Listing 1:*__
 ```python
 
-# static choices
+# deklaracja statycznej listy wyboru do wykorzystania w klasie modelu
 MONTHS = models.IntegerChoices('Miesiace', 'Styczeń Luty Marzec Kwiecień Maj Czerwiec Lipiec Sierpień Wrzesień Październik Listopad Grudzień')
 
 SHIRT_SIZES = (
@@ -87,18 +92,20 @@ class Person(models.Model):
         return self.name
 ```
 
-Wykonanie polecenia migracji powinno propagować powyższe modele na schemat domyślnie zdefiniowanej w projekcie bazy danych.
+Po zdefiniowaniu modelu należy przygotować migracje poleceniem `manage.py makemigrations`, a nstępnie wykonać migrację poprzez `manage.py migrate`.
+
+Wykonanie polecenia migracji powinno propagować powyższe modele na schemat domyślnej bazy danych zdefiniowanej w pliku `settings.py`.
 
 **ZADANIA**
 
-1. Zastanów się nad sposobem organizacji swojego kodu dla aplikacji testowej (zajęcia) oraz projektu docelowego i przygotuj środowisko w odpowiedni sposób.
-2. Korzystając z odpowiedniego oprogramowania (MySql Workbench, pgAdmin, inne) przygotuj pierwszą wersję schematu bazy danych dla swojego projektu i utwórz ten schemat bezpośrednio w bazie danych.
-3. Za pomocą polecenia `inspectdb` narzędzia administracyjnego Django stwórz plik z modelami z bazy i umieść kod w pliku `models.py` projektu. Sprawdź czy powinieneś wykonać dodatkowe czynności (edycja, pliki migracji?) po tej operacji.
+1. **PROJEKT** Zastanów się nad sposobem organizacji swojego kodu dla aplikacji testowej (zajęcia) oraz projektu docelowego i przygotuj środowisko w odpowiedni sposób.
+2. **PROJEKT** Korzystając z odpowiedniego oprogramowania (MySql Workbench, pgAdmin, inne) przygotuj pierwszą wersję schematu bazy danych dla swojego projektu i utwórz ten schemat bezpośrednio w bazie danych.
+3. **PROJEKT** Za pomocą polecenia `inspectdb` narzędzia administracyjnego Django stwórz plik z modelami z bazy i umieść kod w pliku `models.py` projektu. Sprawdź czy powinieneś wykonać dodatkowe czynności (edycja, pliki migracji?) po tej operacji.
 4. Przeanalizuj plik z kodem modeli i dodaj/zmodyfikuj jedno z pól modelu. Przygotuj plik migracji (`makemigrations`), a następnie wykonaj migrację i sprawdź czy zmiany zostały propagowane na bazę. Przeglądnij zawartość pliku migracji.
 5. Za pomocą polecenia `showmigrations` wylistuj wszystkie migracje dla danej aplikacji, a następnie sprawdzając w dokumentacji działanie polecenia `migrate` wycofaj ostatnią migrację.
-6. **OPCJONALNE** Zainstaluj pakiet `django-debug-toolbar` i skonfiguruj go.
+6. Zainstaluj pakiet `django-debug-toolbar` i skonfiguruj go.
 7. Posługując się przykładem z [oficjalnego tutoriala numer 2](https://docs.djangoproject.com/pl/4.1/intro/tutorial02/) dodaj jeden model do panelu administracyjnego i przetestuj dodanie, modyfikację i usunięcie instancji tego modelu. Sprawdzaj zawartość w panelu django debug toolbar za każdym razem.
-8. Ponownie w tutorialu https://docs.djangoproject.com/pl/4.1/intro/tutorial02/ przeanalizuj przykłady z wykorzystaniem django shell i wykonaj analogiczny przykład (import modułów, modelu, utworzenie instancji, itd.) wykorzystując jeden z utworzonych modeli.
+8. Ponownie w tutorialu https://docs.djangoproject.com/pl/4.1/intro/tutorial02/ przeanalizuj przykłady z wykorzystaniem django shell i wykonaj analogiczny przykład (import modułów, modelu, utworzenie instancji, itd.) wykorzystując jeden z utworzonych modeli z listingu 1.
 9. Zapisz zmiany w repozytorium i jeżeli jest to wymagane wyślij informacje o dodaktowym repozytorium dla prowadzącego zajęcia.
 
 
