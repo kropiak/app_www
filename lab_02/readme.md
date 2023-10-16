@@ -7,7 +7,7 @@
 
 Django posiada narzędzie administracyjne w postaci skryptu `manage.py` oraz polecenia `django-admin` dzięki którym możemy wykonać wiele czynności administracyjnych, takich jak dodanie użytkownika administracyjnego, wykonanie migracji bazy danych, uruchomienie serwera i inne. Pełną listę poleceń można znaleźć w oficjalnej dokumentacji pod adresem: https://docs.djangoproject.com/pl/4.1/ref/django-admin/
 
-Dodatkowe i przydatne narzędzia można dodać poprzez instalację zewnętrznych modułów, np. [django-admin-tools](https://github.com/django-admin-tools/django-admin-tools) (**aktualnie istnieje problem z instalacją z Django 4.1**),[django-debug-toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/) lub [django-extensions](https://pypi.org/project/django-extensions/).
+Dodatkowe i przydatne narzędzia można dodać poprzez instalację zewnętrznych modułów, np. [django-admin-tools](https://github.com/django-admin-tools/django-admin-tools) (**aktualnie istnieje problem z instalacją z Django 4.1**),[django-debug-toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/index.html) lub [django-extensions](https://pypi.org/project/django-extensions/).
 
 Jeżeli w trakcie poprzednich zajęć wykonana została tylko pierwsza część oficjalnego tutoriala, to aby móc wykonać ćwiczenia i zadania dla bieżącego laboratorium należy wykonać poniższe czynności.
 
