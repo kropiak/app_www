@@ -19,6 +19,10 @@ Istnieje również dość ryzykowna opcja polegająca na stworzeniu oddzielnych 
 Poniższa operacja stworzy schematy dla wszystkich zainstalowanych aplikacji (zmienna `INSTALLED_APPS` w pliku `settings.py`). Jeżeli nie są niezbędne to można wybrane linie zakomentować lub dodać na końcu polecenia nazwy aplikacji, dla których chcemy stworzyć schemat.
 
 ```console
+# przygotowanie plików migracji
+python manage.py makemigrations
+
+# wykonanie migracji
 python manage.py migrate
 ```
 
