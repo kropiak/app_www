@@ -38,3 +38,15 @@ W trakcie zajęć do pracy niezbędne będzie posiadanie:
 - Proponowany temat API (co te API będzie robić) jest dowolny i będzie przedstawiony prowadzącemu na drugich zajęciach.
 - Prowadzący rezerwuje możliwość przeprowadzenia kolokwium w przypadku braku pracy na zajęciach przez grupę studentów.
 
+## 4. Wymagania projektu.
+
+Zakres projektu zaliczeniowego:
+1.	**Modele**:
+* 4-5 adekwatnych do projektu modeli
+2.	**Uwierzytelnianie (preferowany token) i autoryzacja.**
+* Co najmniej 2 konta z różnym poziomem dostępu do endpointów (np. admin, user)
+3.	**Endpointy:**
+* Rejestracja użytkownika aplikacji
+* CRUD
+* Minimum 2 endpointy, które wyjdą poza schemat CRUD, np. zestawienie miesięczne zamówień, lista wypożyczeń dla użytkownika, lista towarów zaczynających się od itp.
+
