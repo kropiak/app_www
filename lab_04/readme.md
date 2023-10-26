@@ -1,4 +1,4 @@
-# Aplikacje WWW, semestr 2022Z
+# Aplikacje WWW, semestr 2023Z
 
 ## Lab 4 - Django Rest Framework i serializacja danych.
 ---
