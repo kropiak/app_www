@@ -167,6 +167,15 @@ Celem ćwiczeń będzie stworzenie klas odpowiedzialnych za serializację danych
 5. Resztę modeli zaimplementuj w postaci serializerów `ModelSerializer` jeżeli to możliwe.
 6. Napisz kod prezentujący wykorzystanie wybranych dwóch serializerów (patrz listing 2) ze swojej aplikacji i umieść go w pliku markdown o nazwie `drf_serializer_test.md` w folderze `./aplikacja/docs/` (utwórz folder `docs`).
 
+Do konsoli django można również przekazać cały plik z kodem testującym przekazując go jako potok wejściowy:
+```console
+python manage.py shell < ./sciezka/do_pliku.py
+```
+Należy jednak pamiętać o tym, że w ten sposób musimy wykonywac importy z podaniem nazwy aplikacji np. `from ankiety.models import Person`, a nie `from .models import Person`.
+
+Minusem jest niestety dość nieczytelny output, gdzie znaczniki wyjścia konsoli Pythona (czyli >>>) mogą się wielokrotnie powtarzać.
+
+
 Dodatkowe wskazówki:
 
 * Nadpisujemy odpowiednie funkcje `create`, `update` itp. w momencie gdy musimy zapisać obiekty w inny sposób (np. chcemy dodać aktualnie zalogowanego użytkownika jako właściciela stworzonego modelu, chcemy zamienić wielkość znaków, usunąć jakieś znaki z tekstu itp.).
