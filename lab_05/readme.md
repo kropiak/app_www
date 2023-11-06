@@ -152,11 +152,24 @@ def person_detail(request, pk):
 
 ```
 
+Teraz należy jeszcze w klasie serializera dodac implementację metody `update`, która jest wywoływana dla metody `PUT` dla endopitnu `person_detail`.
+
+**_Listing 6_**
+```python
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.shirt_size = validated_data.get('shirt_size', instance.shirt_size)
+        instance.data_dodanie = validated_data.get('data_dodania', instance.miesiac_dodania)
+        instance.stanowisko = validated_data.get('stanowisko', instance.team)
+        instance.save()
+        return instance
+```
+
 Aby całość zadziałała jak należy, niezbędne jest dodanie również odpowienich wpisów w plikach `urls.py` odpowiednich aplikacji projektu.
 
 Przykład poniżej.
 
-**_Listing 6_**
+**_Listing 7_**
 ```python
 # plik ankiety/urls.py
 
@@ -171,7 +184,7 @@ urlpatterns = [
 
 I przykładowy plik `projekt/urls.py` z importem url'i danej aplikacji.
 
-**_Listing 7_**
+**_Listing 8_**
 ```python
 from django.contrib import admin
 from django.urls import path, include
