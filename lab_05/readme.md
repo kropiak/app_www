@@ -192,16 +192,16 @@ Po poprawnej konfiguracji widok standardowy w oknie przeglądarki może wygląda
 **Zadania**
 
 1. Wykonaj zadania na nowym branchu o nazwie `feature_lab_5`. Na koniec pracy, po przetestowaniu, scal ten branch z główną gałęzią projektu.
-2. Zmień implementację modelu `Osoba` tak, aby domyślną wartością pola `miesiac_dodania` był miesiąc bieżący. 
+2. Zmień implementację modelu `Osoba` tak, aby domyślną wartością pola `data_dodania` była data bieżąca. 
 3. Dodaj również walidację dla klasy Osoba:
    * `nazwa` - może zawierać tylko litery,
-   * `miesiac_dodania` - nie może być z przyszłości.
-4. Bazując na przykładach z bieżącego laboratorium przygotuj endpointy dla modeli `Osoba` i `Druzyna`:
+   * `data_dodania` - nie może być z przyszłości (możliwe, że konieczne będzie zdjęcie właściwości pola tylko do odczytu).
+4. Bazując na przykładach z bieżącego laboratorium przygotuj endpointy dla modeli `Osoba` i `Stanowisko`:
    * wyświetlanie, dodawanie i usuwanie pojedynczego obiektu typu `Osoba`,
    * wyświetlanie listy obiektów typu `Osoba`,
    * wyświetlenie listy obiektów typu `Osoba`, które zawierają w polu `nazwa` zadany łańcuch znaków,
-   * wyświetlanie, dodawanie i usuwanie pojedynczego obiektu typu `Drużyna`,
-   * wyświetlanie listy obiektów typu `Drużyna`.
+   * wyświetlanie, dodawanie i usuwanie pojedynczego obiektu typu `Stanowisko`,
+   * wyświetlanie listy obiektów typu `Stanowisko`.
 5. Korzystając z posiadanego API wykonaj:
    * dodaj dwa nowe obiekty `Osoba` eksperymentując z różnymi polami,
    * zmodyfikuj jeden obiekt typu `Osoba`,
