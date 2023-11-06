@@ -1,4 +1,4 @@
-# Aplikacje WWW, semestr 2022Z
+# Aplikacje WWW, semestr 2023Z
 
 ## Lab 5 - Podstawowa walidacja wewnątrz serializerów danych oraz budowa pierwszych endpoint'ów REST API.
 ---
