@@ -152,7 +152,8 @@ def person_detail(request, pk):
 
 ```
 
-Teraz należy jeszcze w klasie serializera dodac implementację metody `update`, która jest wywoływana dla metody `PUT` dla endopitnu `person_detail`.
+Teraz należy jeszcze w klasie serializera dodać implementację metody `update`, która jest wywoływana dla metody `PUT` dla endpointu `person_detail`.
+Dobre praktyki jednak mówią o tym, że powinniśmy dla każdej operacji przygotować oddzielny ednpoint, co pozwoli też na lepszą granulację uprawnień w tak stworzonym systemie. Aby dodać metodę stworzenia nowego obiektu dla danego modelu możemy to zrobić dla metody `PUT` (chociaż dobre praktyki też mówią a tym, że powinien być używany do operacji UPDATE) lub lepiej przez metodę `POST`.
 
 **_Listing 6_**
 ```python
