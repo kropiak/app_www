@@ -165,6 +165,8 @@ Vary: Accept
 ```
 Dodatkowo musimy również zaktualizować definicję URL-i dla zmodyfikowanych endpointów. Postać pliku `ankiety/urls.py` po modyfikacji:
 
+
+**_Listing 3_**
 ```python
 from django.urls import path, include
 from . import views
@@ -183,6 +185,8 @@ Po przetestowaniu tych dwóch endpointów powinniśmy móc wyświetlać obiekty 
 **Krok 2 - dodanie możliwości zalogowania się poprzez interfejs API dostarczony przez DRF.**
 
 Do pliku `urls.py` w projekcie dodajemy:
+
+**_Listing 4_**
 ```python
 urlpatterns += [
     path('api-auth/', include('rest_framework.urls')),
@@ -249,8 +253,19 @@ Dodatkowo, dla widoków (endpointów), które będą uwierzytelniane poprzez tok
 
 **Zadania**
 
-1. W aplikacji rozwijanej w trakcie zajęć odtwórz opisany powyżej sposób uwierzytelniania i go przetestuj.
-2. Do klasy `Osoba` dodaj pole `wlasciciel`, które będzie odwoływało się do modelu `User` wbudowanego w Django Auth. Ogranicz możliwość wyświetlania rekordów tylko ich właścicielom. Przetestuj z użyciem dwóch różnych kont użytkowników. W tutorialu (https://www.django-rest-framework.org/tutorial/4-authentication-and-permissions/#tutorial-4-authentication-permissions) przedstawiony jest taki scenariusz z przykładami. Nie wystawiaj jednak API dla modelu `User` jeżeli nie jest to konieczne.
-3. Korzystając z dokumentacji zawartej w https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication dodaj obsługe tokenów w aplikacji. Dodaj również tokeny dla istniejących userów.
-4. Rozbij endpoint dla person na oddzielne punkty dla żądania typu PUT oraz DELETE i dla tego drugiego ustaw autentykację poprzez token. Przetestuj działanie.
-5. Dodaj lub zmodyfikuj istniejący endpoint tak aby możliwe było wyświetlenie wszystkich obiektów typu Osoba przypisanych do danego stanowiska. Niech url dla niego będzie postaci `.\stanowisko\<id>\members\`. Niech dostęp będzie tylko do odczytu i tylko poprzez autoryzację tokenem.
+1. W aplikacji rozwijanej w trakcie zajęć odtwórz opisany powyżej sposób uwierzytelniania (listing 4 i uwierzytelnianie przez wcześniej utworzone konto użytkownika Django np. superusera) i go przetestuj.
+2. Do klasy `Osoba` dodaj pole `wlasciciel`, które będzie odwoływało się do modelu `User` wbudowanego w Django Auth. Ogranicz możliwość wyświetlania rekordów tylko ich właścicielom (na widoku wyświetlającym wszystkie obiekty typu `Osoba`). Przetestuj z użyciem dwóch różnych kont użytkowników. W tutorialu (https://www.django-rest-framework.org/tutorial/4-authentication-and-permissions/#tutorial-4-authentication-permissions) przedstawiony jest taki scenariusz z przykładami. Nie wystawiaj jednak API dla modelu `User` jeżeli nie jest to konieczne.
+
+> Wskazówka: Jeżeli dostęp do endpointu, który zapisuje nowe obiekty `Osoba` został zadeklarowany przez widok funkcyjny (a nie poprzez dziedziczenie z klasy `APIView`) to dodanie obiektu aktualnie zalogowanego usera do danych z żądania POST można zrealizować tak:
+```python
+...
+    if request.method == 'POST':
+        serializer = PersonSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(wlasciciel=request.user)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+```
+3. Korzystając z dokumentacji zawartej w https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication dodaj obsługę tokenów w aplikacji. Dodaj również tokeny dla istniejących userów.
+4. Rozbij endpoint dla person na oddzielne punkty dla żądania typu PUT oraz DELETE i dla tego drugiego ustaw autentykację poprzez token. Przetestuj działanie za pomocą narzędzia curl lub Postman.
+5. Dodaj lub zmodyfikuj istniejący endpoint tak aby możliwe było wyświetlenie wszystkich obiektów typu `Osoba` przypisanych do danego stanowiska. Niech url dla niego będzie postaci `.\stanowisko\<id>\members\`. Niech dostęp będzie tylko do odczytu i tylko poprzez autoryzację tokenem.
