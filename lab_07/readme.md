@@ -1,4 +1,4 @@
-# Aplikacje WWW, semestr 2022Z
+# Aplikacje WWW, semestr 2023Z
 
 ## Lab 7 - Uprawnienia w aplikacji Django oraz w Django Rest Framework.
 
