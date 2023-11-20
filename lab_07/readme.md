@@ -193,7 +193,7 @@ import copy
 from rest_framework import permissions
 
 
-class CustomDjangoModelPermission(permissions.DjangoModelPermissions):
+class CustomDjangoModelPermissions(permissions.DjangoModelPermissions):
 
     def __init__(self):
         self.perms_map = copy.deepcopy(self.perms_map)
