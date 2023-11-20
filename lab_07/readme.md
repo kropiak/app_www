@@ -207,7 +207,7 @@ class CustomDjangoModelPermission(permissions.DjangoModelPermissions):
 Dodaj nową grupę w panelu administracyjnym. Dodaj do tej grupy jedno wybrane uprawnienie domyślne dla modelu, który został dodany do zarządzania w panelu administracyjnym. Stwórz nowego użytkownika, który będzie "w zespole", ale nie będzie superużytkownikiem i przypisz go do tej grupy. Zaloguj się na konto stworzonego użytkownika i sprawdź czy kontrola tego uprawnienia działa poprawnie.
 
 **Zadanie 2**  
-Korzystając z przykładów z listingów 1 oraz 2 dodaj prosty widok, w logice którego sprawdź czy user posiada uprawnienie `view_osoba` i wyświetlaj odpowiednią treść.
+Korzystając z przykładów z listingów 1 oraz 2 dodaj prosty widok, w logice którego sprawdź czy user posiada uprawnienie `view_osoba` i wyświetlaj odpowiednią treść. **(patrz listing 1)**
 
 **Zadanie 3**  
 Do modelu `Osoba` dodaj własne uprawnienie o nazwie `can_view_other_persons`, które dodaj do logiki z zadania 2 i jeżeli jest ono przypisane to pozwalaj wyświetlać obiekty modelu `Osoba`, których zalogowany użytkownik nie jest właścicielem. W przeciwnym wypadku nie daj takiej możliwości.
