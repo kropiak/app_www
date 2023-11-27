@@ -94,12 +94,11 @@ class PersonDetailTest(TestCase):
             name='Zbyszek', shirt_size='L', miesiac_dodania=1, team=self.team)
 
     def test_get_person_detail(self):
-        pk = 1
         factory = APIRequestFactory()
-        request = factory.get(f'/ankiety/persons/{pk}/')
+        request = factory.get(f'/ankiety/persons/{self.zbyszek.pk}/')
 
         force_authenticate(request, user=self.user)
-        response = person_detail(request, pk)
+        response = person_detail(request, self.zbyszek.pk)
         # print(response.data)  # tylko do sprawdzenia
         serializer = PersonSerializer(self.zbyszek)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
