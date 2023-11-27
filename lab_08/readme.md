@@ -56,6 +56,8 @@ Jako wyjście otrzymamy podsumowanie wykonania wszystkich testów.
 ```console
 # uruchomienie wszystkich testów w wybranym modelu
 python manage.py test ankiety.tests
+# z włączoną "werbalizacją" działań
+python manage.py test ankiety.tests -v 2
 
 # uruchomienie konkretnego mudułu (pliku) ztestami
 python manage.py test ankiety.tests.test_models
