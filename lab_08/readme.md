@@ -67,6 +67,63 @@ python manage.py test ankiety.tests.test_models.PersonModelsTest
 python manage.py test ankiety.tests.test_models.PersonModelTest.test_first_name_max_length
 ```
 
+Poniżej dwa przykłady prostego testowania endpointu API z uwierzytelnianiem.
+
+> Plik `./ankiety/tests/test_api.py`
+
+**_Listing 2:_**
+```python
+from django.contrib.auth.models import User
+from rest_framework.test import APIRequestFactory, APIClient
+from rest_framework.test import force_authenticate
+from django.test import TestCase
+from ..views import *
+
+
+# initialize the APIClient app
+client = APIClient()
+
+
+class PersonDetailTest(TestCase):
+    """ Testowanie bez użycia APIClient"""
+
+    def setUp(self) -> None:
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.team = Team.objects.create(name='Loosers', country='PL')
+        self.zbyszek = Person.objects.create(
+            name='Zbyszek', shirt_size='L', miesiac_dodania=1, team=self.team)
+
+    def test_get_person_detail(self):
+        pk = 1
+        factory = APIRequestFactory()
+        request = factory.get(f'/ankiety/persons/{pk}/')
+
+        force_authenticate(request, user=self.user)
+        response = person_detail(request, pk)
+        # print(response.data)  # tylko do sprawdzenia
+        serializer = PersonSerializer(self.zbyszek)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, serializer.data)
+
+
+class GetSinglePersonTest(TestCase):
+    """ Testowanie z użyciem APIClient"""
+    def setUp(self):
+        self.team = Team.objects.create(name='Loosers', country='PL')
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        client.force_authenticate(user=self.user)
+        self.zbyszek = Person.objects.create(
+            name='Zbyszek', shirt_size='L', miesiac_dodania=1, team=self.team)
+
+    def test_get_valid_single_person(self):
+        request = client.get(f'/ankiety/persons/{self.zbyszek.pk}/')
+        person = Person.objects.get(pk=self.zbyszek.pk)
+        serializer = PersonSerializer(person)
+        response = request.render()
+        self.assertEqual(response.data, serializer.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+```
 
 W zależności od projektu można przyjąć inną strukturę, ale należy pamiętać o odpowniednich ścieżkach importu modułów Django. Przykład innej organizacji imkonfiguracji można znaleźć np. tutaj: https://docs.djangoproject.com/en/4.1/topics/testing/advanced/#testing-reusable-applications
 
