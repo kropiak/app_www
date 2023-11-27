@@ -1,4 +1,4 @@
-# Aplikacje WWW, semestr 2022Z
+# Aplikacje WWW, semestr 2023Z
 
 ## Lab 8 - Testowanie aplikacji Django.
 
