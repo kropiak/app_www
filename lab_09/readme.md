@@ -52,7 +52,7 @@ from ankiety.models import Person, Team
 class PersonType(DjangoObjectType):
     class Meta:
         model = Person
-        fields = ("id", "name", "shirt_size", "miesiac_dodania")
+        fields = ("id", "name", "shirt_size", "miesiac_dodania", "team")
 
 class TeamType(DjangoObjectType):
     class Meta:
@@ -62,9 +62,11 @@ class TeamType(DjangoObjectType):
 class Query(graphene.ObjectType):
     all_teams = graphene.List(TeamType)
     person_by_id = graphene.Field(PersonType, id=graphene.Int(required=True))
+    all_persons = graphene.List(PersonType)
+    person_by_name = graphene.Field(PersonType, name=graphene.String(required=True))
+    find_persons_name_by_phrase = graphene.List(PersonType, substr=graphene.String(required=True))
 
     def resolve_all_teams(root, info):
-        # return Team.objects.select_related("team").all()
         return Team.objects.all()
 
     def resolve_person_by_id(root, info, id):
@@ -73,8 +75,22 @@ class Query(graphene.ObjectType):
         except Person.DoesNotExist:
             raise Exception('Invalid person Id')
 
+    def resolve_person_by_name(root, info, name):
+        try:
+            return Person.objects.get(name=name)
+        except Person.DoesNotExist:
+            raise Exception(f'No Person with name \'{name}\' found.')
+
+    def resolve_all_persons(root, info):
+        """ zwraca również wszystkie powiązane obiekty team dla tego obiektu Person"""
+        return Person.objects.select_related("team").all()
+
+    def resolve_find_persons_name_by_phrase(self, info, substr):
+        return Person.objects.filter(name__icontains=substr)
+
 
 schema = graphene.Schema(query=Query)
+
 
 ```
 
@@ -94,6 +110,8 @@ Uruchamiamy serwer i przechodzimy pod adres http://127.0.0.1/graphql i możemy w
 
 ![](graphql_1.png)
 ![](graphql_2.png)
+![](graphql_3.png)
+![](graphql_4.png)
 
 Oficjalna strona GraphQL: https://graphql.org/
 
@@ -101,4 +119,4 @@ Oficjalna strona GraphQL: https://graphql.org/
 **Zadania**
 
 1. Odtwórz w swojej aplikacji kolejne kroki przedstawione w labie.
-2. Dodaj jeszcze 3 dodatkowe funkcje pozwalające na odpytanie ich za pomocą GraphQL, które pozwolą np. odfiltrowac obiekty po fragmencie nazwy itp.
+2. Dodaj jeszcze 3 dodatkowe funkcje pozwalające na odpytanie ich za pomocą GraphQL, które pozwolą np. odfiltrować obiekty po fragmencie nazwy itp.
