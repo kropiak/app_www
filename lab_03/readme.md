@@ -92,7 +92,7 @@ W panelu administracyjnym możliwe jest również dodanie filtrów do widoków. 
 # przykład i wizualizacja dla modeli Person oraz Team.
 
 class PersonAdmin(admin.ModelAdmin):
-    list_filter = ('team',)
+    list_filter = ['team']
 ```
 ![filtry](filters.png)
 
