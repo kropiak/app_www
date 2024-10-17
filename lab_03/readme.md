@@ -51,7 +51,7 @@ Sprawdź w bazie jak przechowywane są dane. Czy pojawiły się tam kolumny, kt�
 W dokumentacji pola typu `DateField` znajdź informacje o sposobie automatycznego wstawiania wartości znacznika czasu (timestamp) w momencie utworzenia obiektu. Ustaw taką własność dla nowego pola `data_dodania` modelu `Osoba`.
 
 **Zadanie 3**  
-Znajdź w dokumentacji modułu admin ([link](https://docs.djangoproject.com/pl/4.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.readonly_fields) zobacz jak deklaruje się pola modelu tylko do odczytu i ustaw taką własność dla pola `data_dodania` modelu `Osoba`.
+Znajdź w dokumentacji modułu admin ([link](https://docs.djangoproject.com/pl/4.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.readonly_fields)) zobacz jak deklaruje się pola modelu tylko do odczytu i ustaw taką własność dla pola `data_dodania` modelu `Osoba`.
 
 **Zadania 4**  
 Z dokumentacji typów wyliczeniowych https://docs.djangoproject.com/en/4.2/ref/models/fields/#enumeration-types wykorzystaj klasę `models.IntegerChoices` i zmień deklarację pola `plec`, jeżeli użyłeś/-aś innej metody.
