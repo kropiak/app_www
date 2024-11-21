@@ -46,7 +46,7 @@ Zakres projektu zaliczeniowego:
 2.	**Uwierzytelnianie (preferowany token) i autoryzacja.**
 * Co najmniej 2 konta z różnym poziomem dostępu do endpointów (np. admin, user)
 3.	**Endpointy:**
-* Rejestracja użytkownika aplikacji
+* Rejestracja użytkownika aplikacji (opcjonalne)
 * CRUD
 * Minimum 2 endpointy, które wyjdą poza schemat CRUD, np. zestawienie miesięczne zamówień, lista wypożyczeń dla użytkownika, lista towarów zaczynających się od itp.
 
