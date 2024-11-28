@@ -120,4 +120,3 @@ Oficjalna strona GraphQL: https://graphql.org/
 
 1. Odtwórz w swojej aplikacji kolejne kroki przedstawione w labie.
 2. Dodaj jeszcze 3 dodatkowe funkcje pozwalające na odpytanie ich za pomocą GraphQL, które pozwolą np. odfiltrować obiekty po fragmencie nazwy, wyświetlić ilość obiektów z daną wartością atrybutu (np. count osób z rozmiarem koszuli L), ilość osób przypisanych do drużyny, itp.
-3. 
