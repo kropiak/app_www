@@ -2,7 +2,7 @@
 
 ## Lab 9 - Wprowadzenie do GraphQL.
 
-GraphQl jest językiem zapytań do API, który w odróżnieniu od REST API pozwala precyzyjnie określić listę cech obiektów, które chcemy zwrócić w zależności od potrzeb. Oznacza to, że poprawnie definiując zapytania możemy uniknąć ofektu pobierania zbyt dużej liczby danych (overfetching) lub zbyt małej (underfetching).
+GraphQL jest językiem zapytań do API, który w odróżnieniu od REST API pozwala precyzyjnie określić listę cech obiektów, które chcemy zwrócić (po stronie aplikacji klienta) w zależności od potrzeb. Oznacza to, że poprawnie definiując zapytania możemy uniknąć ofektu pobierania zbyt dużej liczby danych (overfetching) lub zbyt małej (underfetching).
 
 
 Poniżej znajduje się instrukcja uruchomienia modułu `graphene` pozwalającego na przetestowanie GraphQL w istniejącym projekcie Django.
@@ -49,6 +49,13 @@ from graphene_django import DjangoObjectType
 
 from ankiety.models import Person, Team
 
+
+# dzięki wykorzystaniu klasy DjangoObjectType możemy w łatwy sposób
+# wskazać klasę wcześniej zdefiniowanego modelu, która zostanie wykorzystana
+# w schemie GraphQL umożliwiając połączenie Django QuerySet oraz zapytań
+# poprzez GraphQL. Podobnie jak w przypadku definicji własności w klasach
+# administracyjnych danego modelu (plik admin.py) tutaj też możemy określić
+# np. listę pól, które poprzez GraphQL chcemy wystawić z danego modelu
 class PersonType(DjangoObjectType):
     class Meta:
         model = Person
@@ -61,13 +68,27 @@ class TeamType(DjangoObjectType):
         model = Team
         fields = ("id", "name", "country")
 
+# klasa Query pozwala określić pola (tu np. all_teams, person_by_id, itd.)
+# które są dostępne, a następnie Resolvery, który definiują w jaki sposób
+# dane dla wskazanego pola będą pobierane (tu już używamy znany nam
+# sposób z użyciem Django QuerySet)
+
 class Query(graphene.ObjectType):
+    # typ graphene.List określa, że zwracana będzie lista obiektów danego typu
     all_teams = graphene.List(TeamType)
+
+    # tu określamy, że zwrócony będzie obiekt typu PersonType, a jego wyszukanie
+    # odbędzie się na podstawie jego atrybutu id o typie Int, który jest wymagany
     person_by_id = graphene.Field(PersonType, id=graphene.Int(required=True))
+
     all_persons = graphene.List(PersonType)
     person_by_name = graphene.Field(PersonType, name=graphene.String(required=True))
     find_persons_name_by_phrase = graphene.List(PersonType, substr=graphene.String(required=True))
 
+    # resolver dla pola all_teams
+    # root główny obiekt wartości przekazywany przez zapytanie
+    # info informacje z resolvera
+    # args słownik (opcjonalnie), parametrów przekazywanych do resolvera
     def resolve_all_teams(root, info):
         return Team.objects.all()
 
@@ -114,9 +135,10 @@ Uruchamiamy serwer i przechodzimy pod adres http://127.0.0.1/graphql i możemy w
 ![](graphql_4.png)
 
 Oficjalna strona GraphQL: https://graphql.org/
+Strona projektu Graphene Python: https://graphene-python.org/
 
 
 **Zadania**
 
-1. Odtwórz w swojej aplikacji kolejne kroki przedstawione w labie.
-2. Dodaj jeszcze 3 dodatkowe funkcje pozwalające na odpytanie ich za pomocą GraphQL, które pozwolą np. odfiltrować obiekty po fragmencie nazwy, wyświetlić ilość obiektów z daną wartością atrybutu (np. count osób z rozmiarem koszuli L), ilość osób przypisanych do drużyny, itp.
+1. Odtwórz w swojej aplikacji kolejne kroki przedstawione w labie aby uruchomić możliwość korzystania z GraphQL.
+2. Dodaj jeszcze 3 dodatkowe resolvery pozwalające na odpytanie API za pomocą GraphQL, które pozwolą np. odfiltrować obiekty po fragmencie nazwy, wyświetlić ilość obiektów z daną wartością atrybutu (np. count osób z rozmiarem koszuli L), ilość osób przypisanych do drużyny, itp.
