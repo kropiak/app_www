@@ -1,4 +1,4 @@
-# Aplikacje WWW, semestr 2024Z
+# Aplikacje WWW, semestr 2025/2026Z
 
 ## 1. Cel i zakres przedmiotu
 
@@ -19,8 +19,8 @@ W trakcie zajęć student pozna m.in. zagadnienia takie jak:
 
 W trakcie zajęć do pracy niezbędne będzie posiadanie:
 * zainstalowanego interpretera **Pythona** w wersji 3.11 lub nowszej
-* **framework Django** w wersji 4.2.*
-* narzędzie IDE, preferowane **PyCharm Professional** (licencja studencka) lub wersja Community. Może to być również inne oprogramowanie ze wsparciem dla języka Python.
+* **framework Django** w wersji 5.2.* - poczytaj release notes: https://docs.djangoproject.com/en/5.2/releases/5.2/
+* narzędzie IDE, preferowane **PyCharm Professional** (licencja studencka) lub wersja Community. Może to być również inne oprogramowanie ze wsparciem dla języka Python np. Visual Studio Code.
 * narzędzie Git do zarządzania kodem projektu
 * możliwe, że w zależności od konfiguracji projektu niezbędne będzie zainstalowanie i konfiguracja odpowiedniego serwera bazy danych
 
