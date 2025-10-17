@@ -22,7 +22,7 @@ Dodaj do aplikacji `posts` nowy model `Post` zgodnie z poniższą definicją:
 * pole `slug` typu `SlugField`,
 * pole `created_at` typu data i czas, wartość wstawiana automatycznie w momencie dodania rekordu,
 * pole `updated_at` typu data i czas, wartość aktualizowana po każdej aktualizacji instancji obiektu,
-* pole `created_by`, które jest kluczem obcym do wbudowanej klasy `django..contrib.auth.User`.
+* pole `created_by`, które jest kluczem obcym do wbudowanej klasy `django.contrib.auth.User`.
 
 **Zadanie 2**  
 Zarejestruj model w panelu administracyjnym Django. Znajdź w dokumentacji modułu admin ([link](https://docs.djangoproject.com/pl/5.2/ref/contrib/admin/)) zobacz jak deklaruje się pola modelu tylko do odczytu i ustaw taką własność dla pola `created_at` modelu `Post`.
