@@ -1,4 +1,4 @@
-# Aplikacje WWW, semestr 2024Z
+# Aplikacje WWW, semestr 2025Z
 
 ## Lab 3
 ---
