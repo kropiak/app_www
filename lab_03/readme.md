@@ -31,7 +31,9 @@ Zarejestruj model w panelu administracyjnym Django. Znajdź w dokumentacji modu�
 Przesłoń metodę `__str__()` zdefiniowanych modeli `Category`, `Topic` oraz `Post` według poniższej instrukcji:
 * `Category` - nazwa kategorii,
 * `Topic` - nazwa tematu,
-* `Posts` - pierwsze 5 wyrazów tekstu posta + '...' jeżeli dłuższy.
+* `Posts` - pierwsze 5 wyrazów tekstu posta + '...' jeżeli dłuższy.*
+
+\* Jeżeli dodamy klasę PostAdmin w `admin.py` oraz okreśłimy listę kolumn do wyświetlenia, należy to obsłużyć jako dodatkowe pole w klasie `PostAdmin` (definiowane przez osadzenie funkcji w tej klasie).
 
 **Zadanie 4**  
 Bazując na przykładzie z dokumentacji https://docs.djangoproject.com/pl/5.2/topics/db/models/#meta-options dodaj właściwość `META` sortując domyślnie model `Category` po nazwie alfabetycznie, `Topic` podobnie, a `Post` po dacie dodania od najnowszych.
