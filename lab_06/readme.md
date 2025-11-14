@@ -257,7 +257,7 @@ Dodatkowo, dla widoków (endpointów), które będą uwierzytelniane poprzez tok
    
 2. Zdefiniuj nowy endpoint `users/posts/`, który będzie zwracał listę wszystkich postów (model `Post` z aplikacji `blog`), ale tylko tych, które zostały utworzone przez aktualnie zalogowanego użytkownika. Dostęp do tego endpointu powinien być możliwy tylko dla uwierzytelnionych użytkowników (czyli z uprawnieniem `IsAuthenticated`). Przetestuj działanie endpointu po zalogowaniu się poprzez interfejs DRF API oraz spróbuj uzyskać dostęp bez logowania.
 
-> Wskazówka: Jeżeli dostęp do endpointu, który zapisuje nowe obiekty `Osoba` został zadeklarowany przez widok funkcyjny (a nie poprzez dziedziczenie z klasy `APIView`) to dodanie obiektu aktualnie zalogowanego usera do danych z żądania POST można zrealizować tak:
+> Wskazówka: Jeżeli dostęp do endpointu został zadeklarowany przez widok funkcyjny (a nie poprzez dziedziczenie z klasy `APIView`) to dodanie obiektu aktualnie zalogowanego usera do danych z żądania POST można zrealizować tak:
 ```python
 ...
     if request.method == 'POST':
@@ -268,8 +268,8 @@ Dodatkowo, dla widoków (endpointów), które będą uwierzytelniane poprzez tok
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 ```
 
-3. Korzystając z dokumentacji zawartej w https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication dodaj obsługę tokenów w aplikacji. Dodaj również tokeny dla istniejących userów. Zauważ, że jest to prosty mechanizm tokenów dla aplikacji Django. Jeżeli chcesz skorzystać z bardziej zaawansowanego mechanizmu (np. JWT) to musisz użyć dodatkowej biblioteki (np. `djangorestframework-simplejwt`) do czego zachęcam.
+1. Korzystając z dokumentacji zawartej w https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication dodaj obsługę tokenów w aplikacji. Dodaj również tokeny dla istniejących userów. Zauważ, że jest to prosty mechanizm tokenów dla aplikacji Django. Jeżeli chcesz skorzystać z bardziej zaawansowanego mechanizmu (np. JWT) to musisz użyć dodatkowej biblioteki (np. `djangorestframework-simplejwt`) do czego zachęcam.
 
-4. Rozbij endpoint dla `Post` na oddzielne endpointy dla żądania typu `PUT` oraz `DELETE` i dla tego drugiego ustaw autentykację poprzez token. Przetestuj działanie za pomocą narzędzia `curl` lub `Postman`.
+2. Rozbij endpoint dla `Post` na oddzielne endpointy dla żądania typu `PUT` oraz `DELETE` i dla tego drugiego ustaw autentykację poprzez token. Przetestuj działanie za pomocą narzędzia `curl` lub `Postman`.
 
-5. Dodaj lub zmodyfikuj istniejący endpoint tak aby możliwe było wyświetlenie wszystkich obiektów typu `Topic` dla podanej kategorii. Niech url dla niego będzie postaci `.\categories\<id>\topics\`. Niech dostęp będzie tylko do odczytu i tylko poprzez autoryzację tokenem.
+3. Dodaj lub zmodyfikuj istniejący endpoint tak aby możliwe było wyświetlenie wszystkich obiektów typu `Topic` dla podanej kategorii. Niech url dla niego będzie postaci `.\categories\<id>\topics\`. Niech dostęp będzie tylko do odczytu i tylko poprzez autoryzację tokenem.
