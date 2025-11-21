@@ -207,7 +207,7 @@ class CustomDjangoModelPermissions(permissions.DjangoModelPermissions):
 Dodaj nową grupę uprawnień w panelu administracyjnym. Dodaj do tej grupy jedno wybrane uprawnienie domyślne dla modelu, który został dodany do zarządzania w panelu administracyjnym. Stwórz nowego użytkownika, który będzie "w zespole", ale nie będzie superużytkownikiem i przypisz go do tej grupy. Zaloguj się na konto stworzonego użytkownika i sprawdź czy kontrola tego uprawnienia działa poprawnie.
 
 **Zadanie 2**  
-Korzystając z przykładów z listingów 1 oraz 2 dodaj prosty widok, w logice którego sprawdź czy user posiada uprawnienie `view_osoba` i wyświetlaj odpowiednią treść. **(patrz listing 1)**
+Korzystając z przykładów z listingów 1 oraz 2 dodaj prosty widok, dla wyświetlania np. szczegółów danej kategorii, w logice którego sprawdź czy user posiada uprawnienie `view_category` i wyświetlaj lub nie informacje o kategorii.
 
 **Zadanie 3**  
 Do modelu `Posts` dodaj własne uprawnienie o nazwie `can_edit_others_posts`, umożliwiające edycję postów, których dany użytkownik nie jest twórcą. Stwórz nową grupę uprawnień o nazwie `moderator forum`, przypisz do niej to uprawnienie i przestestuj na wybranym użytkowniku jego działanie.
