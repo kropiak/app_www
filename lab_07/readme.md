@@ -4,7 +4,7 @@
 
 > **Materiały uzupełniające:**
 > * Ciekawy rtykuł o uprawnieniach dla Django: https://realpython.com/manage-users-in-django-admin/ (UWAGA: linki odnoszą do dokumentacji dla wersi 2.x Django)
-> * Django i uprawnienia: https://docs.djangoproject.com/pl/4.1/topics/auth/default/#permissions-and-authorization
+> * Django i uprawnienia: https://docs.djangoproject.com/pl/5.2/topics/auth/default/#permissions-and-authorization
 
 
 ## 1. Uprawnienia, a panel administracyjny Django.
