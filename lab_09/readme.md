@@ -191,7 +191,7 @@ Teraz w przeglądarce po wpisaniu adresu http://127.0.0.1:8000/posts/category/1 
 
 Możemy temu zaradzić dodając obsługę takiej ewentualności. Zmodyfikowana postać widoku `category_detail`:
 
-_**Listing 14**_
+_**Listing 8**_
 
 ```python
 # dodajemy brakujący import na początku pliku (modyfikacja)
